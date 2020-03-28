@@ -1,0 +1,23 @@
+.row-tile{
+    display:inline-block
+}
+
+.tile{
+    border: 1px solid black;
+}
+
+
+.tile:hover{
+    cursor: pointer;
+}
+
+#explored{
+    border:2px solid grey;
+    border-style:inset;
+}
+
+#unexplored{
+    border:2px solid grey;
+    border-style:inset;
+    background-color:lightgrey;
+}

@@ -5,8 +5,13 @@ import Board from './Board'
 export default function Game (props) {
     const [board,updateBoard] = useState(new Minesweeper.Board(10,5));
 
-    function updateGame(){
-
+    function updateGame(tileObj, flagBool){
+        if(flagBool){
+            tileObj.toggleFlag();
+        } else {
+            tileObj.explore();
+        }
+        updateBoard(board);
     }
 
 

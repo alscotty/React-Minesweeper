@@ -15,9 +15,9 @@ export default function Board(props){
                    <div key={rowIdx}>
                    {row.map((tile,colIdx)=>{
                        return(
-                           <span key={colIdx}>
+                           <div className='row-tile'key={colIdx}>
                             <Tile tile={tile} updateGame={props.updateGame}/>
-                        </span>
+                        </div>
                     )
                 })}
                 </div>
