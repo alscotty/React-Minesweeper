@@ -7,20 +7,21 @@ export default function Board(props){
 
 
     if (!props.board) return;
-    let rowSize = props.board.grid.length
-
+  
     return(
         <div>
            {props.board.grid.map((row,rowIdx)=>{
                return(
-                   row.map((tile,colIdx)=>{
-                    return(
-                        <div>
-                            <Tile tile={tile}/>
-                        </div>
+                   <div key={rowIdx}>
+                   {row.map((tile,colIdx)=>{
+                       return(
+                           <span key={colIdx}>
+                            <Tile tile={tile} updateGame={props.updateGame}/>
+                        </span>
                     )
-                   })
-               )
+                })}
+                </div>
+                )
            })}
         </div>
     )

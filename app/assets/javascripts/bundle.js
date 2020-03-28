@@ -104,13 +104,17 @@ __webpack_require__.r(__webpack_exports__);
 function Board(props) {
   console.log(props.board);
   if (!props.board) return;
-  var rowSize = props.board.grid.length;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, props.board.grid.map(function (row, rowIdx) {
-    return row.map(function (tile, colIdx) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Tile__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        tile: tile
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      key: rowIdx
+    }, row.map(function (tile, colIdx) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        key: colIdx
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Tile__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        tile: tile,
+        updateGame: props.updateGame
       }));
-    });
+    }));
   }));
 }
 
@@ -175,7 +179,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 function Tile(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "T");
+  function getTileIcon(tile) {
+    if (tile.bombed) {
+      return '💣';
+    } else if (tile.flagged) {
+      return '⛳';
+    } else if (tile.explored && tile.adjacentBombCount()) {
+      return tile.adjacentBombCount();
+    } else if (tile.explored) {
+      return 'E';
+    } else {
+      return 'U';
+    }
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "tile"
+  }, getTileIcon(props.tile));
 }
 
 /***/ }),
